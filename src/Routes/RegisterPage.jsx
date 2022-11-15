@@ -1,24 +1,40 @@
 import { useNavigate } from 'react-router-dom';
+import { useCallback, useContext, useEffect, useState } from 'react';
 
 function RegisterPage() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [repeatPassword, setRepeatPassword] = useState('');
+
+  const handleSetEmail = useCallback((e) => setEmail(e.target.value), []);
+  const handleSetPassword = useCallback((e) => setPassword(e.target.value), []);
+  const handleSetRepeatPassword = useCallback(
+    (e) => setRepeatPassword(e.target.value),
+    []
+  );
+
   const navigate = useNavigate();
   const handleRegister = () => {
-    const user = {
-      id: Date.now().toString(),
-      email: '123',
-      password: '1234',
-    };
-    fetch('http://localhost:5000/users', {
-      method: 'Post',
-      body: JSON.stringify(user),
-      headers: { 'Content-Type': 'application/json' },
-    })
-      .then(() => {
-        navigate('/login');
+    if (password === repeatPassword) {
+      const user = {
+        id: Date.now().toString(),
+        email: email,
+        password: password,
+      };
+      fetch('http://localhost:5000/users', {
+        method: 'Post',
+        body: JSON.stringify(user),
+        headers: { 'Content-Type': 'application/json' },
       })
-      .catch(() => {
-        alert('Bad');
-      });
+        .then(() => {
+          navigate('/login');
+        })
+        .catch(() => {
+          alert('Bad');
+        });
+    } else {
+      alert('Wrong Password');
+    }
   };
   return (
     <div className="max-w-sm mx-auto pb-5 pt-5 mt-5 ">
@@ -33,6 +49,7 @@ function RegisterPage() {
             type="email"
             name="email"
             placeholder="Email"
+            onChange={handleSetEmail}
             required
           />
         </div>
@@ -42,6 +59,7 @@ function RegisterPage() {
             type="password"
             name="password"
             placeholder="Password"
+            onChange={handleSetPassword}
             required
           />
         </div>
@@ -51,6 +69,7 @@ function RegisterPage() {
             type="password"
             name="repeatPassword"
             placeholder="Repeat password"
+            onChange={handleSetRepeatPassword}
             required
           />
         </div>
