@@ -26,6 +26,9 @@ function LoginPage() {
       .then((r) => r.json())
       .then(console.log());
   }, []);
+  // useEffect(() => {
+  //   if (userContext.user?.email) navigate('/user');
+  // }, [navigate, userContext.user]);
   return (
     <div className="max-w-sm mx-auto pb-5 pt-5 mt-5 ">
       <div className="text-black  flex justify-center pb-5 pt-5 mt-8 text-3xl font-semibold">

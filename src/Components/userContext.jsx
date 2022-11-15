@@ -6,7 +6,7 @@ import {
   useState,
 } from 'react';
 
-const UserContext = createContext({ email: '', setUser: () => {} });
+const UserContext = createContext({ user: {}, setUser: () => {} });
 
 export const useUserContext = () => {
   return useContext(UserContext);
