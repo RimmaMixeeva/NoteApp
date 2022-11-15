@@ -2,16 +2,24 @@
   "users": [
     {
       "email": "user1@gmail.com",
+      "date": "Wed Nov 1 2022 02:00:49 GMT+0300 (Москва, стандартное время)",
       "password": "1234"
     },
     {
       "email": "user2@gmail.com",
+      "date": "Wed Nov 2 2022 02:00:49 GMT+0300 (Москва, стандартное время)",
       "password": "4321"
     },
     {
       "id": "1668551911546",
       "email": "rimma@gmail.com",
       "password": "1234"
+    },
+    {
+      "id": "1668553249385",
+      "date": "Wed Nov 16 2022 02:00:49 GMT+0300 (Москва, стандартное время)",
+      "email": "www",
+      "password": "1"
     }
   ]
 }

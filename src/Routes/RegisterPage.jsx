@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 import { useCallback, useState } from 'react';
-import { useUserContext } from '../Components/userContext';
 
 function RegisterPage() {
   const [email, setEmail] = useState('');
@@ -13,13 +12,13 @@ function RegisterPage() {
     (e) => setRepeatPassword(e.target.value),
     []
   );
-  const userContext = useUserContext();
 
   const navigate = useNavigate();
   const handleRegister = () => {
     if (password === repeatPassword) {
       const user = {
         id: Date.now().toString(),
+        date: Date(),
         email: email,
         password: password,
       };
