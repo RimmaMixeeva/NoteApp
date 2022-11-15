@@ -5,10 +5,13 @@ import { useUserContext } from '../Components/userContext';
 function LoginPage() {
   const userContext = useUserContext();
   const navigate = useNavigate();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
   const handleSetEmail = useCallback((e) => setEmail(e.target.value), []);
   const handleSetPassword = useCallback((e) => setPassword(e.target.value), []);
+
   const handleLogin = useCallback(() => {
     fetch(`http://localhost:5000/users?email=${email}&password=${password}`)
       .then((r) => r.json())
