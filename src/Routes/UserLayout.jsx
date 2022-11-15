@@ -1,7 +1,7 @@
 import { Outlet, NavLink } from 'react-router-dom';
 import { useUserContext } from '../Components/userContext';
 function UserLayout() {
-  const user = useUserContext();
+  const { user } = useUserContext();
   const handleLogout = () => {
     user.setUser({ email: '' });
   };

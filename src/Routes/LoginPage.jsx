@@ -20,8 +20,6 @@ function LoginPage() {
           alert('User is invalid');
         }
       });
-    //userContext.setUser({ email, password });
-    //navigate('/user');
   }, [email, navigate, password, userContext]);
   useEffect(() => {
     fetch('http://localhost:5000/users')
@@ -33,12 +31,7 @@ function LoginPage() {
       <div className="text-black  flex justify-center pb-5 pt-5 mt-8 text-3xl font-semibold">
         Log in
       </div>
-
-      <form
-        action=""
-        method="get"
-        className="text-black pb-5 pt-5 mt-3 text-3xl"
-      >
+      <div className="text-black pb-5 pt-5 mt-3 text-3xl">
         <div>
           <input
             className="bg-gray-300 pt-3 pb-3 pl-3 mt-5"
@@ -67,7 +60,7 @@ function LoginPage() {
             className="bg-gray-300 pt-3 pb-3 pl-3 pr-3 mt-5 flex justify-center mx-auto w-60"
           />
         </div>
-      </form>
+      </div>
     </div>
   );
 }
