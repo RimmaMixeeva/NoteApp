@@ -8,7 +8,7 @@ function LoginPage() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  console.log(userContext);
   const handleSetEmail = useCallback((e) => setEmail(e.target.value), []);
   const handleSetPassword = useCallback((e) => setPassword(e.target.value), []);
 

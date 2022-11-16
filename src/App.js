@@ -8,6 +8,7 @@ import UserLayout from './Routes/UserLayout';
 import Notes from './Routes/Notes';
 import CreateNote from './Routes/CreateNote';
 import UserContextProvider from './Components/userContext';
+import NoteContextProvider from './Components/noteContext';
 import ProtectedRoute from './Components/ProtectedRoute';
 
 const router = createBrowserRouter([
@@ -64,7 +65,9 @@ const router = createBrowserRouter([
 function App() {
   return (
     <UserContextProvider>
-      <RouterProvider router={router} />
+      <NoteContextProvider>
+        <RouterProvider router={router} />
+      </NoteContextProvider>
     </UserContextProvider>
   );
 }
