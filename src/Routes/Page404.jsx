@@ -16,9 +16,9 @@ function Page404() {
       </div>
       <span className="text-black  flex justify-center pb-5 pt-5 mt-1 text-2xl">
         go
-        <a className="text-cyan-900" onClick={goToMain()}>
+        <button className="text-cyan-900" onClick={goToMain()}>
           Home
-        </a>
+        </button>
       </span>
     </div>
   );

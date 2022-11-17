@@ -1,9 +1,12 @@
 import { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUserContext } from '../Components/userContext';
+import { useNotesContext } from '../Components/notesContext';
 
 function LoginPage() {
   const userContext = useUserContext();
+  const notesContext = useNotesContext();
+
   const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
@@ -22,7 +25,13 @@ function LoginPage() {
           alert('User is invalid');
         }
       });
-  }, [email, navigate, password, userContext]);
+    fetch(`http://localhost:5000/notes?userId=${userContext.user.id}`)
+      .then((r) => r.json())
+      .then((notes) => {
+        //тут проблема бесконечного рендера
+        notesContext.setNotes(notes);
+      });
+  }, [email, navigate, password, userContext, notesContext]);
   // useEffect(() => {
   //   fetch('http://localhost:5000/users')
   //     .then((r) => r.json())

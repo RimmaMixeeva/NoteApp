@@ -3,7 +3,6 @@ import { useUserContext } from '../Components/userContext';
 function About() {
   const navigate = useNavigate();
   const userContext = useUserContext();
-  console.log(userContext.user);
   const handleGoToNotes = () => {
     navigate('/user/notes');
   };

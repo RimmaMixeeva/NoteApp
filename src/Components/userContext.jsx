@@ -11,6 +11,7 @@ const UserContext = createContext({ user: {}, setUser: () => {} });
 export const useUserContext = () => {
   return useContext(UserContext);
 };
+
 function UserContextProvider({ children }) {
   const [user, setUser] = useState(() => {
     try {
