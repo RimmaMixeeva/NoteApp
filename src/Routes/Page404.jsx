@@ -2,9 +2,10 @@ import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 function Page404() {
   const navigate = useNavigate();
+
   const goToMain = useCallback(() => {
     return () => navigate(`/`);
-  }, []);
+  }, [navigate]);
   return (
     <div>
       <div className="text-black  flex justify-center pb-5 pt-5 mt-56 text-2xl">

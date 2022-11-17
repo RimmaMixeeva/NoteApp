@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUserContext } from '../Components/userContext';
 
@@ -8,7 +8,6 @@ function LoginPage() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  console.log(userContext);
   const handleSetEmail = useCallback((e) => setEmail(e.target.value), []);
   const handleSetPassword = useCallback((e) => setPassword(e.target.value), []);
 
@@ -24,11 +23,11 @@ function LoginPage() {
         }
       });
   }, [email, navigate, password, userContext]);
-  useEffect(() => {
-    fetch('http://localhost:5000/users')
-      .then((r) => r.json())
-      .then(console.log());
-  }, []);
+  // useEffect(() => {
+  //   fetch('http://localhost:5000/users')
+  //     .then((r) => r.json())
+  //     .then(console.log());
+  // }, []);
   // useEffect(() => {
   //   if (userContext.user?.email) navigate('/user');
   // }, [navigate, userContext.user]);
