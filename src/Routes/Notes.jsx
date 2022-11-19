@@ -1,16 +1,22 @@
 import { NavLink } from 'react-router-dom';
 import { useNotesContext } from '../Components/notesContext';
+import { useUserContext } from '../Components/userContext';
 function Notes() {
   const notesContext = useNotesContext();
+  const userContext = useUserContext();
   const handleDelete = (e) => {
     console.log(e.currentTarget.id);
-    fetch(`https//localhost:3000/notes/id=${e.currentTarget.id}`, {
-      metod: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+    fetch(`http://localhost:5000/notes/${e.currentTarget.id}`, {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
     });
+    fetch(`http://localhost:5000/notes?userId=${userContext.user.id}`)
+      .then((r) => r.json())
+      .then((notes) => {
+        notesContext.setNotes(notes);
+      });
   };
+
   return (
     <div>
       <div className="text-black  flex justify-center pb-5 pt-5 mt-20 text-3xl font-semibold">
