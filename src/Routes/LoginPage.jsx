@@ -20,7 +20,7 @@ function LoginPage() {
       .then((users) => {
         if (users.length === 1) {
           userContext.setUser(users[0]);
-          navigate('/user');
+          navigate('/user/about');
         } else {
           alert('User is invalid');
         }
@@ -28,7 +28,6 @@ function LoginPage() {
     fetch(`http://localhost:5000/notes?userId=${userContext.user.id}`)
       .then((r) => r.json())
       .then((notes) => {
-        //тут проблема бесконечного рендера
         notesContext.setNotes(notes);
       });
   }, [email, navigate, password, userContext, notesContext]);

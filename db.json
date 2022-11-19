@@ -26,20 +26,6 @@
   ],
   "notes": [
     {
-      "id": 1,
-      "userId": 1,
-      "title": "Первая [t заметка",
-      "body": "Тело первой wewe заметки",
-      "createdAt": "2022-11-05T14:36:10.980Z"
-    },
-    {
-      "id": 2,
-      "userId": 1,
-      "title": "Первая wewew заметка",
-      "body": "Тело первой wewe заметки",
-      "createdAt": "2022-11-05T14:36:10.980Z"
-    },
-    {
       "id": 3,
       "userId": 2,
       "title": "Первая wewew заметка",
@@ -52,6 +38,34 @@
       "title": "Вторая заметка",
       "body": "Тело второй заметки",
       "createdAt": "2022-11-05T14:36:10.980Z"
+    },
+    {
+      "id": "1668874670723",
+      "userId": 1,
+      "title": "ddffdf",
+      "body": "dfdfd",
+      "createdAt": "Sat Nov 19 2022 19:17:50 GMT+0300 (Москва, стандартное время)"
+    },
+    {
+      "id": "1668875573080",
+      "userId": 1,
+      "title": "halopik",
+      "body": "My name is halopik. My family is very poor. So I have to earn money by bying things.",
+      "createdAt": "Sat Nov 19 2022 19:32:53 GMT+0300 (Москва, стандартное время)"
+    },
+    {
+      "id": "1668885036729",
+      "userId": 1,
+      "title": "OIIO",
+      "body": "PPPPPPPPPPPPPPPPPPPPPPPPPPP",
+      "createdAt": "Sat Nov 19 2022 22:10:36 GMT+0300 (Москва, стандартное время)"
+    },
+    {
+      "id": "1668885449420",
+      "userId": 1,
+      "title": "ret",
+      "body": "retush",
+      "createdAt": "Sat Nov 19 2022 22:17:29 GMT+0300 (Москва, стандартное время)"
     }
   ]
 }

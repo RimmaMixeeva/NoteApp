@@ -1,5 +1,6 @@
 import { Outlet, NavLink } from 'react-router-dom';
 function Layout() {
+  localStorage.clear();
   return (
     <div>
       <header className="text-violet-900 bg-neutral-100 flex gap-14 justify-center pb-5 pt-5 text-xl ">
