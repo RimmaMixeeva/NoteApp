@@ -1,24 +1,10 @@
 import { NavLink } from 'react-router-dom';
 import { useNotesContext } from '../Components/notesContext';
 import { useUserContext } from '../Components/userContext';
-import { useNoteContext } from '../Components/noteContext';
-import { useNavigate } from 'react-router-dom';
 function Notes() {
-  const navigate = useNavigate();
   const notesContext = useNotesContext();
-  const noteContext = useNoteContext();
   const userContext = useUserContext();
-  const handleEdit = (e) => {
-    fetch(
-      `http://localhost:5000/notes?userId=${userContext.user.id}&id=${e.target.id}`
-    )
-      .then((r) => r.json())
-      .then((note) => {
-        noteContext.setNote(note);
-      });
-
-    navigate('/user/editnote');
-  };
+  const handleEdit = (e) => {};
   const handleDelete = (e) => {
     fetch(`http://localhost:5000/notes/${e.currentTarget.id}`, {
       method: 'DELETE',

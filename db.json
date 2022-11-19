@@ -40,13 +40,6 @@
       "createdAt": "2022-11-05T14:36:10.980Z"
     },
     {
-      "id": "1668874670723",
-      "userId": 1,
-      "title": "ddffdf",
-      "body": "dfdfd",
-      "createdAt": "Sat Nov 19 2022 19:17:50 GMT+0300 (Москва, стандартное время)"
-    },
-    {
       "id": "1668875573080",
       "userId": 1,
       "title": "halopik",
@@ -66,6 +59,20 @@
       "title": "ret",
       "body": "retush",
       "createdAt": "Sat Nov 19 2022 22:17:29 GMT+0300 (Москва, стандартное время)"
+    },
+    {
+      "id": "1668888223561",
+      "userId": 1,
+      "title": "goo",
+      "body": "goooooooooooo",
+      "createdAt": "Sat Nov 19 2022 23:03:43 GMT+0300 (Москва, стандартное время)"
+    },
+    {
+      "id": "1668888831819",
+      "userId": 2,
+      "title": "you know",
+      "body": "no i dnk",
+      "createdAt": "Sat Nov 19 2022 23:13:51 GMT+0300 (Москва, стандартное время)"
     }
   ]
 }
