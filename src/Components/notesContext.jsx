@@ -22,9 +22,9 @@ function NotesContextProvider({ children }) {
   });
 
   const handleSetNotes = useCallback((notes) => {
+    setNotes(notes);
     const userString = JSON.stringify(notes);
     localStorage.setItem('notes', userString);
-    setNotes(notes);
   }, []);
 
   const value = useMemo(

@@ -36,7 +36,7 @@ function CreateNote() {
       fetch(`http://localhost:5000/notes?userId=${userContext.user.id}`)
         .then((r) => r.json())
         .then((notes) => {
-          notesContext.setNotes(notes);
+          notesContext.setNotes(notes.reverse()); //тут
         });
     } else {
       alert('Enter the title');
@@ -58,6 +58,7 @@ function CreateNote() {
       <div className="text-black pb-5 pt-5 mt-3 text-3xl w-full ">
         <div>
           <textarea
+            maxlength="30"
             className="bg-gray-300 pt-3 pl-3 mt-5 w-full"
             type="text"
             placeholder="Name"

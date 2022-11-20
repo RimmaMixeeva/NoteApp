@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useState, useEffect, flushSync } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUserContext } from '../Components/userContext';
 import { useNotesContext } from '../Components/notesContext';
@@ -19,26 +19,20 @@ function LoginPage() {
       .then((r) => r.json())
       .then((users) => {
         if (users.length === 1) {
+          console.log(userContext.user.id);
           userContext.setUser(users[0]);
+          console.log(userContext.user.id);
           navigate('/user/about');
         } else {
           alert('User is invalid');
         }
       });
-    fetch(`http://localhost:5000/notes?userId=${userContext.user.id}`)
-      .then((r) => r.json())
-      .then((notes) => {
-        notesContext.setNotes(notes);
-      });
-  }, [email, navigate, password, userContext, notesContext]);
-  // useEffect(() => {
-  //   fetch('http://localhost:5000/users')
-  //     .then((r) => r.json())
-  //     .then(console.log());
-  // }, []);
-  // useEffect(() => {
-  //   if (userContext.user?.email) navigate('/user');
-  // }, [navigate, userContext.user]);
+  }, [email, navigate, password, userContext]);
+  useEffect(() => {
+    if (userContext.user?.email) {
+      navigate('/login');
+    }
+  }, [userContext.user, navigate]);
   return (
     <div className="max-w-sm mx-auto pb-5 pt-5 mt-5 ">
       <div className="text-black  flex justify-center pb-5 pt-5 mt-8 text-3xl font-semibold">

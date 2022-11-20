@@ -1,11 +1,19 @@
 import { useNavigate } from 'react-router-dom';
+import { useCallback } from 'react';
 import { useUserContext } from '../Components/userContext';
+import { useNotesContext } from '../Components/notesContext';
 function About() {
+  const notesContext = useNotesContext();
   const navigate = useNavigate();
   const userContext = useUserContext();
-  const handleGoToNotes = () => {
-    navigate('/user/notes');
-  };
+  const handleGoToNotes = useCallback(() => {
+    fetch(`http://localhost:5000/notes?userId=${userContext.user.id}`)
+      .then((r) => r.json())
+      .then((notes) => {
+        notesContext.setNotes(notes.reverse()); //тут
+        navigate('/user/notes');
+      });
+  }, [notesContext, userContext.user.id, navigate]);
 
   return (
     <div>

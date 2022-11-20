@@ -64,11 +64,11 @@ const router = createBrowserRouter([
 ]);
 function App() {
   return (
-    <UserContextProvider>
-      <NotesContextProvider>
+    <NotesContextProvider>
+      <UserContextProvider>
         <RouterProvider router={router} />
-      </NotesContextProvider>
-    </UserContextProvider>
+      </UserContextProvider>
+    </NotesContextProvider>
   );
 }
 

@@ -10,7 +10,7 @@
       "id": 2,
       "email": "user2@gmail.com",
       "date": "Wed Nov 2 2022 02:00:49 GMT+0300 (Москва, стандартное время)",
-      "password": "4321"
+      "password": "1234"
     },
     {
       "id": "1668551911546",
@@ -22,57 +22,77 @@
       "date": "Wed Nov 16 2022 02:00:49 GMT+0300 (Москва, стандартное время)",
       "email": "www",
       "password": "1"
+    },
+    {
+      "id": "1668889537585",
+      "date": "Sat Nov 19 2022 23:25:37 GMT+0300 (Москва, стандартное время)",
+      "email": "UIUIU",
+      "password": "12"
     }
   ],
   "notes": [
     {
-      "id": 3,
+      "id": "1668889634784",
+      "userId": "1668889537585",
+      "title": "HELLO",
+      "body": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",
+      "createdAt": "Sat Nov 19 2022 23:27:14 GMT+0300 (Москва, стандартное время)"
+    },
+    {
+      "id": "1668890060747",
+      "userId": 1,
+      "title": "жюжюжюжю",
+      "body": "юбююбб",
+      "createdAt": "Sat Nov 19 2022 23:34:20 GMT+0300 (Москва, стандартное время)"
+    },
+    {
+      "id": "1668891555912",
+      "userId": 1,
+      "title": "llllll",
+      "body": "eeeeeeeee",
+      "createdAt": "Sat Nov 19 2022 23:59:15 GMT+0300 (Москва, стандартное время)"
+    },
+    {
+      "id": "1668939368296",
       "userId": 2,
-      "title": "Первая wewew заметка",
-      "body": "Тело первой wewe заметки",
-      "createdAt": "2022-11-05T14:36:10.980Z"
+      "title": "2user",
+      "body": "ttttt",
+      "createdAt": "Sun Nov 20 2022 13:16:08 GMT+0300 (Москва, стандартное время)"
     },
     {
-      "id": 4,
+      "id": "1668939376200",
       "userId": 2,
-      "title": "Вторая заметка",
-      "body": "Тело второй заметки",
-      "createdAt": "2022-11-05T14:36:10.980Z"
+      "title": "2wer",
+      "body": "oi",
+      "createdAt": "Sun Nov 20 2022 13:16:16 GMT+0300 (Москва, стандартное время)"
     },
     {
-      "id": "1668875573080",
-      "userId": 1,
-      "title": "halopik",
-      "body": "My name is halopik. My family is very poor. So I have to earn money by bying things.",
-      "createdAt": "Sat Nov 19 2022 19:32:53 GMT+0300 (Москва, стандартное время)"
-    },
-    {
-      "id": "1668885036729",
-      "userId": 1,
-      "title": "OIIO",
-      "body": "PPPPPPPPPPPPPPPPPPPPPPPPPPP",
-      "createdAt": "Sat Nov 19 2022 22:10:36 GMT+0300 (Москва, стандартное время)"
-    },
-    {
-      "id": "1668885449420",
-      "userId": 1,
-      "title": "ret",
-      "body": "retush",
-      "createdAt": "Sat Nov 19 2022 22:17:29 GMT+0300 (Москва, стандартное время)"
-    },
-    {
-      "id": "1668888223561",
-      "userId": 1,
-      "title": "goo",
-      "body": "goooooooooooo",
-      "createdAt": "Sat Nov 19 2022 23:03:43 GMT+0300 (Москва, стандартное время)"
-    },
-    {
-      "id": "1668888831819",
+      "id": "1668939384120",
       "userId": 2,
-      "title": "you know",
-      "body": "no i dnk",
-      "createdAt": "Sat Nov 19 2022 23:13:51 GMT+0300 (Москва, стандартное время)"
+      "title": "2syn",
+      "body": "789",
+      "createdAt": "Sun Nov 20 2022 13:16:24 GMT+0300 (Москва, стандартное время)"
+    },
+    {
+      "id": "1668941406942",
+      "userId": 2,
+      "title": "2koool",
+      "body": "2kkkol",
+      "createdAt": "Sun Nov 20 2022 13:50:06 GMT+0300 (Москва, стандартное время)"
+    },
+    {
+      "id": "1668942172358",
+      "userId": 2,
+      "title": "2check",
+      "body": "hey",
+      "createdAt": "Sun Nov 20 2022 14:02:52 GMT+0300 (Москва, стандартное время)"
+    },
+    {
+      "id": "1668942295380",
+      "userId": 2,
+      "title": "2русл",
+      "body": "ыфыфыф",
+      "createdAt": "Sun Nov 20 2022 14:04:55 GMT+0300 (Москва, стандартное время)"
     }
   ]
 }

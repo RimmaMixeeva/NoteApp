@@ -1,6 +1,18 @@
 import { Outlet, NavLink } from 'react-router-dom';
+import { useCallback } from 'react';
 import { useUserContext } from '../Components/userContext';
+import { useNotesContext } from '../Components/notesContext';
 function UserLayout() {
+  const userContext = useUserContext();
+  const notesContext = useNotesContext();
+  const handleNotes = useCallback(() => {
+    fetch(`http://localhost:5000/notes?userId=${userContext.user.id}`)
+      .then((r) => r.json())
+      .then((notes) => {
+        notesContext.setNotes(notes.reverse()); //тут
+        console.log('uuu');
+      });
+  }, [notesContext, userContext.user.id]);
   const { user } = useUserContext();
   const handleLogout = () => {
     user.setUser({ email: '' });
@@ -19,6 +31,7 @@ function UserLayout() {
           <NavLink
             to="/user/notes" //тут надо будет заменить на путь к заметкам нашего юзера
             className={({ isActive }) => (isActive ? 'link-active' : '')}
+            onClick={handleNotes}
           >
             NOTES
           </NavLink>
