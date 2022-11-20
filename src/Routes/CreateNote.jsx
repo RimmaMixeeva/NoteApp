@@ -39,7 +39,7 @@ function CreateNote() {
       fetch(`http://localhost:5000/notes?userId=${userContext.user.id}`)
         .then((r) => r.json())
         .then((notes) => {
-          notesContext.setNotes(notes.reverse()); //тут
+          notesContext.setNotes(notes.reverse());
         });
     } else {
       alert('Enter the title');
