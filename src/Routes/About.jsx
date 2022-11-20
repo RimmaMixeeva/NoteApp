@@ -10,7 +10,7 @@ function About() {
     fetch(`http://localhost:5000/notes?userId=${userContext.user.id}`)
       .then((r) => r.json())
       .then((notes) => {
-        notesContext.setNotes(notes.reverse()); //тут
+        notesContext.setNotes(notes.reverse());
         navigate('/user/notes');
       });
   }, [notesContext, userContext.user.id, navigate]);

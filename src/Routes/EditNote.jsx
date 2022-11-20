@@ -1,30 +1,45 @@
-import { useCallback, useState } from 'react';
-import { useUserContext } from '../Components/userContext';
+import { useState } from 'react';
+import { useNoteContext } from '../Components/noteContext';
 import { useNotesContext } from '../Components/notesContext';
+import { useUserContext } from '../Components/userContext';
 import { useNavigate } from 'react-router-dom';
-function CreateNote() {
+function EditNote() {
   const navigate = useNavigate();
+  const noteContext = useNoteContext();
   const userContext = useUserContext();
   const notesContext = useNotesContext();
   const [text, setText] = useState('');
   const [title, setTitle] = useState('');
-  const handleText = useCallback((e) => setText(e.target.value), []);
-  const handleTitle = useCallback((e) => setTitle(e.target.value), []);
+
+  const handleText = (e) => {
+    const note = {
+      id: noteContext.note[0].id,
+      userId: noteContext.note[0].userId,
+      title: noteContext.note[0].title,
+      body: e.target.value,
+      createdAt: noteContext.note[0].createdAt,
+    };
+    noteContext.setNote([note]);
+  };
+  const handleTitle = (e) => {
+    const note = {
+      id: noteContext.note[0].id,
+      userId: noteContext.note[0].userId,
+      title: e.target.value,
+      body: noteContext.note[0].body,
+      createdAt: noteContext.note[0].createdAt,
+    };
+    noteContext.setNote([note]);
+  };
+
   const handleBack = () => {
     navigate('/user/notes');
   };
-  const handleCreate = () => {
-    if (title !== '' && text !== '') {
-      const note = {
-        id: Date.now().toString(),
-        userId: userContext.user.id,
-        title: title,
-        body: text,
-        createdAt: Date(),
-      };
-      fetch('http://localhost:5000/notes', {
-        method: 'Post',
-        body: JSON.stringify(note),
+  const handleEdit = () => {
+    if (noteContext.note[0].title !== '') {
+      fetch(`http://localhost:5000/notes/${noteContext.note[0].id}`, {
+        method: 'Put',
+        body: JSON.stringify(noteContext.note[0]),
         headers: { 'Content-Type': 'application/json' },
       })
         .then(() => {
@@ -52,18 +67,19 @@ function CreateNote() {
           Back
         </button>
         <div className="pt-3 flex justify-center font-semibold">
-          Create new note
+          Edit the note
         </div>
       </div>
       <div className="text-black pb-5 pt-5 mt-3 text-3xl w-full ">
         <div>
           <textarea
-            maxlength="30"
+            maxLength="30"
             className="bg-gray-300 pt-3 pl-3 mt-5 w-full"
             type="text"
             placeholder="Name"
             onChange={handleTitle}
             required
+            value={noteContext.note[0].title}
           ></textarea>
         </div>
         <div>
@@ -73,13 +89,14 @@ function CreateNote() {
             type="text"
             placeholder="Node text..."
             required
-          />
+            value={noteContext.note[0].body}
+          ></textarea>
         </div>
         <div>
           <input
             type="submit"
-            value="Create"
-            onClick={handleCreate}
+            value="Edit"
+            onClick={handleEdit}
             className="bg-gray-300 pt-3 pb-3 pl-3 pr-3 mt-5 flex justify-center mx-auto w-60"
           />
         </div>
@@ -88,4 +105,4 @@ function CreateNote() {
   );
 }
 
-export default CreateNote;
+export default EditNote;

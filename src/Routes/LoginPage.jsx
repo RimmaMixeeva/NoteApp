@@ -1,13 +1,10 @@
-import { useCallback, useState, useEffect, flushSync } from 'react';
+import { useCallback, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUserContext } from '../Components/userContext';
-import { useNotesContext } from '../Components/notesContext';
 
 function LoginPage() {
-  const userContext = useUserContext();
-  const notesContext = useNotesContext();
-
   const navigate = useNavigate();
+  const userContext = useUserContext();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -19,15 +16,15 @@ function LoginPage() {
       .then((r) => r.json())
       .then((users) => {
         if (users.length === 1) {
-          console.log(userContext.user.id);
           userContext.setUser(users[0]);
-          console.log(userContext.user.id);
+
           navigate('/user/about');
         } else {
           alert('User is invalid');
         }
       });
   }, [email, navigate, password, userContext]);
+
   useEffect(() => {
     if (userContext.user?.email) {
       navigate('/login');

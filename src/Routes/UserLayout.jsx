@@ -10,7 +10,6 @@ function UserLayout() {
       .then((r) => r.json())
       .then((notes) => {
         notesContext.setNotes(notes.reverse()); //тут
-        console.log('uuu');
       });
   }, [notesContext, userContext.user.id]);
   const { user } = useUserContext();
@@ -23,13 +22,13 @@ function UserLayout() {
         <div>Welcome, {user.email}</div>
         <div className="text-violet-900 flex gap-14 justify-center text-xl">
           <NavLink
-            to="/user/about" //тут надо будет заменить на путь кописанию нашего юзера
+            to="/user/about"
             className={({ isActive }) => (isActive ? 'link-active' : '')}
           >
             ABOUT
           </NavLink>
           <NavLink
-            to="/user/notes" //тут надо будет заменить на путь к заметкам нашего юзера
+            to="/user/notes"
             className={({ isActive }) => (isActive ? 'link-active' : '')}
             onClick={handleNotes}
           >

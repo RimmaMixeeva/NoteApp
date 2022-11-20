@@ -7,8 +7,10 @@ import About from './Routes/About';
 import UserLayout from './Routes/UserLayout';
 import Notes from './Routes/Notes';
 import CreateNote from './Routes/CreateNote';
+import EditNote from './Routes/EditNote';
 import UserContextProvider from './Components/userContext';
 import NotesContextProvider from './Components/notesContext';
+import NoteContextProvider from './Components/noteContext';
 import ProtectedRoute from './Components/ProtectedRoute';
 
 const router = createBrowserRouter([
@@ -55,6 +57,10 @@ const router = createBrowserRouter([
         path: 'createnote',
         element: <CreateNote />,
       },
+      {
+        path: 'editnote',
+        element: <EditNote />,
+      },
     ],
   },
   {
@@ -64,11 +70,13 @@ const router = createBrowserRouter([
 ]);
 function App() {
   return (
-    <NotesContextProvider>
-      <UserContextProvider>
-        <RouterProvider router={router} />
-      </UserContextProvider>
-    </NotesContextProvider>
+    <UserContextProvider>
+      <NotesContextProvider>
+        <NoteContextProvider>
+          <RouterProvider router={router} />
+        </NoteContextProvider>
+      </NotesContextProvider>
+    </UserContextProvider>
   );
 }
 

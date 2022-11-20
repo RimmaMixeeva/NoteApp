@@ -1,10 +1,20 @@
 import { NavLink } from 'react-router-dom';
 import { useNotesContext } from '../Components/notesContext';
+import { useNoteContext } from '../Components/noteContext';
 import { useUserContext } from '../Components/userContext';
 function Notes() {
   const notesContext = useNotesContext();
   const userContext = useUserContext();
-  const handleEdit = (e) => {};
+  const noteContext = useNoteContext();
+  const handleEdit = (e) => {
+    fetch(
+      `http://localhost:5000/notes?userId=${userContext.user.id}&id=${e.target.id}`
+    )
+      .then((r) => r.json())
+      .then((note) => {
+        noteContext.setNote(note);
+      });
+  };
   const handleDelete = (e) => {
     fetch(`http://localhost:5000/notes/${e.currentTarget.id}`, {
       method: 'DELETE',
@@ -32,13 +42,15 @@ function Notes() {
           <span className="text-black font-semibold">{note.title} </span>
           {note.createdAt}
           <div>
-            <button
+            <NavLink
+              to="/user/editnote"
               id={note.id}
               className="pr-3 pl-3 bg-green-600"
               onClick={handleEdit}
             >
               Edit
-            </button>
+            </NavLink>
+
             <button
               id={note.id}
               className="pl-3 pr-3 ml-5 bg-red-600"
