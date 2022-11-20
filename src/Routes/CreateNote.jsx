@@ -1,11 +1,13 @@
 import { useCallback, useState } from 'react';
 import { useUserContext } from '../Components/userContext';
 import { useNotesContext } from '../Components/notesContext';
+import { useNoteContext } from '../Components/noteContext';
 import { useNavigate } from 'react-router-dom';
 function CreateNote() {
   const navigate = useNavigate();
   const userContext = useUserContext();
   const notesContext = useNotesContext();
+  const noteContext = useNoteContext();
   const [text, setText] = useState('');
   const [title, setTitle] = useState('');
   const handleText = useCallback((e) => setText(e.target.value), []);
@@ -22,13 +24,14 @@ function CreateNote() {
         body: text,
         createdAt: Date(),
       };
+      noteContext.setNote([note]);
       fetch('http://localhost:5000/notes', {
         method: 'Post',
         body: JSON.stringify(note),
         headers: { 'Content-Type': 'application/json' },
       })
         .then(() => {
-          navigate('/user/notes');
+          navigate('/user/viewnote');
         })
         .catch(() => {
           alert('Bad');

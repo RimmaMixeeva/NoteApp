@@ -1,5 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import { useCallback, useState } from 'react';
+const EMAIL_REGEXP =
+  /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
+function isEmailValid(value) {
+  return EMAIL_REGEXP.test(value);
+}
 
 function RegisterPage() {
   const [email, setEmail] = useState('');
@@ -15,7 +20,7 @@ function RegisterPage() {
 
   const navigate = useNavigate();
   const handleRegister = () => {
-    if (password === repeatPassword) {
+    if (password === repeatPassword && isEmailValid(email)) {
       const user = {
         id: Date.now().toString(),
         date: Date(),
@@ -34,7 +39,7 @@ function RegisterPage() {
           alert('Bad');
         });
     } else {
-      alert('Wrong Password');
+      alert('Wrong Data');
     }
   };
   return (

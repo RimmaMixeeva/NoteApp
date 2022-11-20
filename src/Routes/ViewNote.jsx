@@ -2,56 +2,34 @@ import { useNoteContext } from '../Components/noteContext';
 import { useNotesContext } from '../Components/notesContext';
 import { useUserContext } from '../Components/userContext';
 import { useNavigate } from 'react-router-dom';
-function EditNote() {
-  const navigate = useNavigate();
+function ViewNote() {
   const noteContext = useNoteContext();
-  const userContext = useUserContext();
   const notesContext = useNotesContext();
-  const handleText = (e) => {
-    const note = {
-      id: noteContext.note[0].id,
-      userId: noteContext.note[0].userId,
-      title: noteContext.note[0].title,
-      body: e.target.value,
-      createdAt: noteContext.note[0].createdAt,
-    };
-    noteContext.setNote([note]);
-  };
-  const handleTitle = (e) => {
-    const note = {
-      id: noteContext.note[0].id,
-      userId: noteContext.note[0].userId,
-      title: e.target.value,
-      body: noteContext.note[0].body,
-      createdAt: noteContext.note[0].createdAt,
-    };
-    noteContext.setNote([note]);
-  };
-
-  const handleBack = () => {
-    navigate('/user/notes');
-  };
-  const handleEdit = () => {
-    if (noteContext.note[0].title !== '') {
+  const userContext = useUserContext();
+  const handleDelete = () => {
+    if (
+      window.confirm(
+        `ВЫ ТОЧНО ХОТИТЕ УДАЛИТЬ ЗАМЕТКУ ${noteContext.note[0].id}?`
+      )
+    ) {
       fetch(`http://localhost:5000/notes/${noteContext.note[0].id}`, {
-        method: 'Put',
-        body: JSON.stringify(noteContext.note[0]),
+        method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
-      })
-        .then(() => {
-          navigate('/user/notes');
-        })
-        .catch(() => {
-          alert('Bad');
-        });
+      });
       fetch(`http://localhost:5000/notes?userId=${userContext.user.id}`)
         .then((r) => r.json())
         .then((notes) => {
-          notesContext.setNotes(notes.reverse()); //тут
+          notesContext.setNotes(notes.reverse());
         });
-    } else {
-      alert('Enter the title');
+      navigate('/user/notes');
     }
+  };
+  const handleEdit = () => {
+    navigate('/user/editnote');
+  };
+  const navigate = useNavigate();
+  const handleBack = () => {
+    navigate('/user/notes');
   };
   return (
     <div className="w-5/6 mt-20 flex flex-col justify-center mx-auto">
@@ -63,8 +41,20 @@ function EditNote() {
           Back
         </button>
         <div className="pt-3 flex justify-center font-semibold">
-          Edit the note
+          View the note
         </div>
+        <button
+          className=" bg-green-600 pt-3 ml-8 pb-3 pl-9 pr-9 mr-8 "
+          onClick={handleEdit}
+        >
+          Edit
+        </button>
+        <button
+          className=" bg-red-600 pt-3 pb-3 pl-9 pr-9 mr-8 "
+          onClick={handleDelete}
+        >
+          Delete
+        </button>
       </div>
       <div className="text-black pb-5 pt-5 mt-3 text-3xl w-full ">
         <div>
@@ -73,14 +63,12 @@ function EditNote() {
             className="bg-gray-300 pt-3 pl-3 mt-5 w-full"
             type="text"
             placeholder="Name"
-            onChange={handleTitle}
             required
             value={noteContext.note[0].title}
           ></textarea>
         </div>
         <div>
           <textarea
-            onChange={handleText}
             className="bg-gray-300 pt-3 pb-3 pl-3 mt-5 w-full h-72"
             type="text"
             placeholder="Node text..."
@@ -88,17 +76,9 @@ function EditNote() {
             value={noteContext.note[0].body}
           ></textarea>
         </div>
-        <div>
-          <input
-            type="submit"
-            value="Edit"
-            onClick={handleEdit}
-            className="bg-gray-300 pt-3 pb-3 pl-3 pr-3 mt-5 flex justify-center mx-auto w-60"
-          />
-        </div>
       </div>
     </div>
   );
 }
 
-export default EditNote;
+export default ViewNote;

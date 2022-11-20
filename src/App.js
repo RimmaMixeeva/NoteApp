@@ -8,6 +8,7 @@ import UserLayout from './Routes/UserLayout';
 import Notes from './Routes/Notes';
 import CreateNote from './Routes/CreateNote';
 import EditNote from './Routes/EditNote';
+import ViewNote from './Routes/ViewNote';
 import UserContextProvider from './Components/userContext';
 import NotesContextProvider from './Components/notesContext';
 import NoteContextProvider from './Components/noteContext';
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
       {
         path: 'editnote',
         element: <EditNote />,
+      },
+      {
+        path: 'viewnote',
+        element: <ViewNote />,
       },
     ],
   },

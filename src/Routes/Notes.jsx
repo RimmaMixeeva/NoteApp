@@ -2,10 +2,22 @@ import { NavLink } from 'react-router-dom';
 import { useNotesContext } from '../Components/notesContext';
 import { useNoteContext } from '../Components/noteContext';
 import { useUserContext } from '../Components/userContext';
+import { useNavigate } from 'react-router-dom';
 function Notes() {
+  const navigate = useNavigate();
   const notesContext = useNotesContext();
   const userContext = useUserContext();
   const noteContext = useNoteContext();
+  const handleViewNote = (e) => {
+    fetch(
+      `http://localhost:5000/notes?userId=${userContext.user.id}&id=${e.target.id}`
+    )
+      .then((r) => r.json())
+      .then((note) => {
+        noteContext.setNote(note);
+      });
+    navigate('/user/viewnote');
+  };
   const handleEdit = (e) => {
     fetch(
       `http://localhost:5000/notes?userId=${userContext.user.id}&id=${e.target.id}`
@@ -16,15 +28,17 @@ function Notes() {
       });
   };
   const handleDelete = (e) => {
-    fetch(`http://localhost:5000/notes/${e.currentTarget.id}`, {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' },
-    });
-    fetch(`http://localhost:5000/notes?userId=${userContext.user.id}`)
-      .then((r) => r.json())
-      .then((notes) => {
-        notesContext.setNotes(notes.reverse()); ///////тут
+    if (window.confirm(`ВЫ ТОЧНО ХОТИТЕ УДАЛИТЬ ЗАМЕТКУ ${e.target.id}?`)) {
+      fetch(`http://localhost:5000/notes/${e.currentTarget.id}`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
       });
+      fetch(`http://localhost:5000/notes?userId=${userContext.user.id}`)
+        .then((r) => r.json())
+        .then((notes) => {
+          notesContext.setNotes(notes.reverse());
+        });
+    }
   };
   return (
     <div>
@@ -39,8 +53,10 @@ function Notes() {
           className="bg-gray-300 pt-3 pb-3 pl-3 pr-3 mt-5 mb-3 flex justify-between mx-auto w-4/5 text-2xl"
           key={note.id}
         >
-          <span className="text-black font-semibold">{note.title} </span>
-          {note.createdAt}
+          <span onClick={handleViewNote} id={note.id}>
+            <span className="text-black mr-8 font-semibold">{note.title}</span>
+            {note.createdAt}
+          </span>
           <div>
             <NavLink
               to="/user/editnote"

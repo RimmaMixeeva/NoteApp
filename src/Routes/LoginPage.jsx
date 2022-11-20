@@ -1,7 +1,6 @@
 import { useCallback, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUserContext } from '../Components/userContext';
-
 function LoginPage() {
   const navigate = useNavigate();
   const userContext = useUserContext();
